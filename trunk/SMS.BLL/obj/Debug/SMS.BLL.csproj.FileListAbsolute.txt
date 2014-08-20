@@ -1,0 +1,15 @@
+F:\Code\SMS\SMS.BLL\bin\Debug\VPR.BLL.dll
+F:\Code\SMS\SMS.BLL\bin\Debug\VPR.BLL.pdb
+F:\Code\SMS\SMS.BLL\bin\Debug\VPR.Common.dll
+F:\Code\SMS\SMS.BLL\bin\Debug\VPR.DAL.dll
+F:\Code\SMS\SMS.BLL\bin\Debug\VPR.Entity.dll
+F:\Code\SMS\SMS.BLL\bin\Debug\VPR.Utilities.dll
+F:\Code\SMS\SMS.BLL\bin\Debug\VPR.Common.pdb
+F:\Code\SMS\SMS.BLL\bin\Debug\VPR.DAL.pdb
+F:\Code\SMS\SMS.BLL\bin\Debug\VPR.Entity.pdb
+F:\Code\SMS\SMS.BLL\bin\Debug\VPR.Utilities.pdb
+F:\Code\SMS\SMS.BLL\bin\Debug\en-GB\VPR.Utilities.resources.dll
+F:\Code\SMS\SMS.BLL\bin\Debug\en-US\VPR.Utilities.resources.dll
+F:\Code\SMS\SMS.BLL\obj\Debug\SMS.BLL.csprojResolveAssemblyReference.cache
+F:\Code\SMS\SMS.BLL\obj\Debug\VPR.BLL.dll
+F:\Code\SMS\SMS.BLL\obj\Debug\VPR.BLL.pdb

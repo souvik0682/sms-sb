@@ -1,0 +1,11 @@
+F:\Code\SMS\SMS.Utilities\bin\Debug\VPR.Utilities.dll
+F:\Code\SMS\SMS.Utilities\bin\Debug\VPR.Utilities.pdb
+F:\Code\SMS\SMS.Utilities\bin\Debug\en-GB\VPR.Utilities.resources.dll
+F:\Code\SMS\SMS.Utilities\bin\Debug\en-US\VPR.Utilities.resources.dll
+F:\Code\SMS\SMS.Utilities\obj\Debug\VPR.Utilities.ResourceManager.Resource.Resource.en-GB.resources
+F:\Code\SMS\SMS.Utilities\obj\Debug\VPR.Utilities.ResourceManager.Resource.Resource.en-US.resources
+F:\Code\SMS\SMS.Utilities\obj\Debug\SMS.Utilities.csproj.GenerateResource.Cache
+F:\Code\SMS\SMS.Utilities\obj\Debug\en-GB\VPR.Utilities.resources.dll
+F:\Code\SMS\SMS.Utilities\obj\Debug\en-US\VPR.Utilities.resources.dll
+F:\Code\SMS\SMS.Utilities\obj\Debug\VPR.Utilities.dll
+F:\Code\SMS\SMS.Utilities\obj\Debug\VPR.Utilities.pdb

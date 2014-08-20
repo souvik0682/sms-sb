@@ -1,0 +1,17 @@
+F:\Code\SMS\SMS.WebApp\obj\Debug\SMS.WebApp.csprojResolveAssemblyReference.cache
+F:\Code\SMS\SMS.WebApp\obj\Debug\VPR.WebApp.dll
+F:\Code\SMS\SMS.WebApp\obj\Debug\VPR.WebApp.pdb
+F:\Code\SMS\SMS.WebApp\bin\VPR.WebApp.dll
+F:\Code\SMS\SMS.WebApp\bin\VPR.WebApp.pdb
+F:\Code\SMS\SMS.WebApp\bin\VPR.BLL.dll
+F:\Code\SMS\SMS.WebApp\bin\VPR.Common.dll
+F:\Code\SMS\SMS.WebApp\bin\VPR.Entity.dll
+F:\Code\SMS\SMS.WebApp\bin\VPR.Utilities.dll
+F:\Code\SMS\SMS.WebApp\bin\VPR.DAL.dll
+F:\Code\SMS\SMS.WebApp\bin\VPR.BLL.pdb
+F:\Code\SMS\SMS.WebApp\bin\VPR.Common.pdb
+F:\Code\SMS\SMS.WebApp\bin\VPR.Entity.pdb
+F:\Code\SMS\SMS.WebApp\bin\VPR.Utilities.pdb
+F:\Code\SMS\SMS.WebApp\bin\VPR.DAL.pdb
+F:\Code\SMS\SMS.WebApp\bin\en-GB\VPR.Utilities.resources.dll
+F:\Code\SMS\SMS.WebApp\bin\en-US\VPR.Utilities.resources.dll

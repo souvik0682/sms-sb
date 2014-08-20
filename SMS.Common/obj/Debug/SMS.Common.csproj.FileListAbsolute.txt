@@ -1,0 +1,4 @@
+F:\Code\SMS\SMS.Common\bin\Debug\VPR.Common.dll
+F:\Code\SMS\SMS.Common\bin\Debug\VPR.Common.pdb
+F:\Code\SMS\SMS.Common\obj\Debug\VPR.Common.dll
+F:\Code\SMS\SMS.Common\obj\Debug\VPR.Common.pdb

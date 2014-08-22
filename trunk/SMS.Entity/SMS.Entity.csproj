@@ -42,14 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressEntity.cs" />
-    <Compile Include="AreaEntity.cs" />
     <Compile Include="BerthEntity.cs" />
     <Compile Include="ContactPersonEntity.cs" />
     <Compile Include="ContainerType.cs" />
-    <Compile Include="CustomerEntity.cs" />
     <Compile Include="CustomerTypeEntity.cs" />
     <Compile Include="GroupCompanyEntity.cs" />
-    <Compile Include="LocationEntity.cs" />
+    <Compile Include="CompanyEntity.cs" />
     <Compile Include="MenuEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleEntity.cs" />

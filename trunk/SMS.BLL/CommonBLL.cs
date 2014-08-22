@@ -214,11 +214,11 @@ namespace VPR.BLL
             CommonDAL.DeleteLocation(locId, modifiedBy);
         }
 
-        public string SaveLocation(ILocation loc, int modifiedBy)
+        public string SaveCompany(ICompany loc, int modifiedBy)
         {
             int result = 0;
             string errMessage = string.Empty;
-            result = CommonDAL.SaveLocation(loc, modifiedBy);
+            result = CommonDAL.SaveCompany(loc, modifiedBy);
 
             switch (result)
             {
@@ -241,21 +241,21 @@ namespace VPR.BLL
             searchCriteria.SortDirection = "ASC";
         }
 
-        public List<ILocation> GetAllLocation(SearchCriteria searchCriteria)
+        public List<ICompany> GetAllLocation(SearchCriteria searchCriteria)
         {
             return CommonDAL.GetLocation('N', searchCriteria);
         }
 
 
         //New Function Added By Souvik - 11-06-2013
-        public List<ILocation> GetActiveLocation_New(int UserId)  
+        public List<ICompany> GetActiveLocation_New(int UserId)  
         {
             SearchCriteria searchCriteria = new SearchCriteria();
             SetDefaultSearchCriteriaForLocation(searchCriteria);
             return CommonDAL.GetLocation_New('Y', UserId, searchCriteria);
         }
 
-        public List<ILocation> GetActiveLocation()
+        public List<ICompany> GetActiveLocation()
         {
             SearchCriteria searchCriteria = new SearchCriteria();
             SetDefaultSearchCriteriaForLocation(searchCriteria);
@@ -263,11 +263,12 @@ namespace VPR.BLL
             //return CommonDAL.GetCountry();
         }
 
-        public ILocation GetLocation(int locId)
+        public List<ICompany> GetActiveCompany()
         {
             SearchCriteria searchCriteria = new SearchCriteria();
             SetDefaultSearchCriteriaForLocation(searchCriteria);
-            return CommonDAL.GetLocation(locId, 'N', searchCriteria);
+            return CommonDAL.GetCompany('Y', searchCriteria);
+            //return CommonDAL.GetCountry();
         }
 
         //public void SaveLocation(ILocation loc, int modifiedBy)
@@ -280,71 +281,9 @@ namespace VPR.BLL
         //    CommonDAL.DeleteLocation(locId, modifiedBy);
         //}
 
-        public List<ILocation> GetLocationByUser(int userId)
+        public List<ICompany> GetCompanyByUser(int userId)
         {
-            return CommonDAL.GetLocationByUser(userId);
-        }
-
-        #endregion
-
-        #region Area
-
-        //private void SetDefaultSearchCriteriaForArea(SearchCriteria searchCriteria)
-        //{
-        //    searchCriteria.SortExpression = "Location";
-        //    searchCriteria.SortDirection = "ASC";
-        //}
-
-        //public List<IArea> GetAllArea(SearchCriteria searchCriteria)
-        //{
-        //    return CommonDAL.GetArea('N', searchCriteria);
-        //}
-
-        //public List<IArea> GetActiveArea()
-        //{
-        //    SearchCriteria searchCriteria = new SearchCriteria();
-        //    SetDefaultSearchCriteriaForArea(searchCriteria);
-        //    return CommonDAL.GetArea('Y', searchCriteria);
-        //}
-
-        //public IArea GetArea(int areaId)
-        //{
-        //    SearchCriteria searchCriteria = new SearchCriteria();
-        //    SetDefaultSearchCriteriaForArea(searchCriteria);
-        //    return CommonDAL.GetArea(areaId, 'N', searchCriteria);
-        //}
-
-        //public string SaveArea(IArea area, int modifiedBy)
-        //{
-        //    int result = 0;
-        //    string errMessage = string.Empty;
-        //    result = CommonDAL.SaveArea(area, modifiedBy);
-
-        //    switch (result)
-        //    {
-        //        case 1:
-        //            errMessage = ResourceManager.GetStringWithoutName("ERR00013");
-        //            break;
-        //        default:
-        //            break;
-        //    }
-
-        //    return errMessage;
-        //}
-
-        //public void DeleteArea(int areaId, int modifiedBy)
-        //{
-        //    CommonDAL.DeleteArea(areaId, modifiedBy);
-        //}
-
-        //public List<IArea> GetAreaByLocation(int locId)
-        //{
-        //    return CommonDAL.GetAreaByLocation(locId);
-        //}
-
-        public List<IArea> GetAreaByLocationAndPinCode(int locId, string pinCode)
-        {
-            return CommonDAL.GetAreaByLocationAndPinCode(locId, pinCode);
+            return CommonDAL.GetCompanyByUser(userId);
         }
 
         #endregion
@@ -366,98 +305,6 @@ namespace VPR.BLL
 
         #endregion
 
-        #region Customer
-
-        private void SetDefaultSearchCriteriaForCustomer(SearchCriteria searchCriteria)
-        {
-            searchCriteria.SortExpression = "CustName";
-            searchCriteria.SortDirection = "ASC";
-        }
-
-        public List<ICustomer> GetAllCustomer(SearchCriteria searchCriteria)
-        {
-            return CommonDAL.GetCustomerList('N', searchCriteria);
-        }
-
-        public List<ICustomer> GetActiveCustomer(SearchCriteria searchCriteria)
-        {
-            return CommonDAL.GetCustomerList('Y', searchCriteria);
-        }
-
-        public List<ICustomer> GetAllCustomer()
-        {
-            SearchCriteria searchCriteria = new SearchCriteria();
-            SetDefaultSearchCriteriaForCustomer(searchCriteria);
-            return CommonDAL.GetCustomerList('N', searchCriteria);
-        }
-
-        public List<ICustomer> GetActiveCustomer()
-        {
-            SearchCriteria searchCriteria = new SearchCriteria();
-            SetDefaultSearchCriteriaForCustomer(searchCriteria);
-
-            return CommonDAL.GetCustomerList('N', searchCriteria);
-        }
-
-        public List<ICustomer> GetCustomerByUser(int userId)
-        {
-            SearchCriteria searchCriteria = new SearchCriteria();
-            SetDefaultSearchCriteriaForCustomer(searchCriteria);
-            searchCriteria.UserId = userId;
-            return CommonDAL.GetCustomerList('N', searchCriteria);
-        }
-
-        public ICustomer GetCustomer(int customer)
-        {
-            SearchCriteria searchCriteria = new SearchCriteria();
-            SetDefaultSearchCriteriaForCustomer(searchCriteria);
-            return CommonDAL.GetCustomer(customer, 'N', searchCriteria);
-        }
-
-        //public string SaveCustomer(ICustomer customer, int modifiedBy)
-        //{
-        //    int result = 0;
-        //    string errMessage = string.Empty;
-        //    result = CommonDAL.SaveCustomer(customer, modifiedBy);
-
-        //    switch (result)
-        //    {
-        //        case 1:
-        //            errMessage = ResourceManager.GetStringWithoutName("ERR00013");
-        //            break;
-        //        default:
-        //            break;
-        //    }
-
-        //    return errMessage;
-        //}
-
-        //public void DeleteCustomer(int customer, int modifiedBy)
-        //{
-        //    CommonDAL.DeleteCustomer(customer, modifiedBy);
-        //}
-
-        #endregion
-
-        #region Customer Type
-
-        //public List<ICustomerType> GetAllCustomerType()
-        //{
-        //    return CommonDAL.GetCustomerType('N');
-        //}
-
-        public List<ICustomerType> GetActiveCustomerType()
-        {
-            return CommonDAL.GetCustomerType('Y');
-        }
-
-        //public ICustomerType GetCustomerType(int custTypeId)
-        //{
-        //    return CommonDAL.GetCustomerType(custTypeId, 'N');
-        //}
-
-        #endregion
-
         #region User
 
         public List<IUser> GetSalesExecutiveNew(int userId)
@@ -465,22 +312,6 @@ namespace VPR.BLL
             return CommonDAL.GetSalesExecutiveNew(userId);
         }
 
-        #endregion
-
-        #region Container Type
-
-        public static IList<IContainerType> GetContainerType()
-        {
-            return CommonDAL.GetContainerType();
-        }
-
-        #endregion
-
-        #region BLHeader
-        public static DataTable GetBLHeaderByBLNo(long LocationId)
-        {
-            return CommonDAL.GetBLHeaderByBLNo(LocationId);
-        }
         #endregion
 
         #region Report
@@ -536,16 +367,7 @@ namespace VPR.BLL
             return CommonDAL.GetExpLine(Location);
         }
 
-        public static DataTable GetExpBLHeaderByBLNo(long Location)
-        {
-
-            return CommonDAL.GetExpBLHeaderByBLNo(Location);
-        }
-
-        public static DataTable GetExpBL(long Location, long Line, long Voyage)
-        {
-            return CommonDAL.GetExpBL(Location, Line, Voyage);
-        }
+      
         #endregion
 
         #region Currency

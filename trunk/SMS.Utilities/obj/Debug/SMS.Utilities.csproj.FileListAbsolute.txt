@@ -9,3 +9,16 @@ F:\Code\SMS\SMS.Utilities\obj\Debug\en-GB\VPR.Utilities.resources.dll
 F:\Code\SMS\SMS.Utilities\obj\Debug\en-US\VPR.Utilities.resources.dll
 F:\Code\SMS\SMS.Utilities\obj\Debug\VPR.Utilities.dll
 F:\Code\SMS\SMS.Utilities\obj\Debug\VPR.Utilities.pdb
+E:\dotnet_dev\sms-sb\SMS.Utilities\bin\Debug\VPR.Utilities.dll
+E:\dotnet_dev\sms-sb\SMS.Utilities\bin\Debug\VPR.Utilities.pdb
+E:\dotnet_dev\sms-sb\SMS.Utilities\bin\Debug\en-GB\VPR.Utilities.resources.dll
+E:\dotnet_dev\sms-sb\SMS.Utilities\bin\Debug\en-US\VPR.Utilities.resources.dll
+E:\dotnet_dev\sms-sb\SMS.Utilities\obj\Debug\ResolveAssemblyReference.cache
+E:\dotnet_dev\sms-sb\SMS.Utilities\obj\Debug\VPR.Utilities.ResourceManager.Resource.Resource.en-GB.resources
+E:\dotnet_dev\sms-sb\SMS.Utilities\obj\Debug\VPR.Utilities.ResourceManager.Resource.Resource.en-US.resources
+E:\dotnet_dev\sms-sb\SMS.Utilities\obj\Debug\GenerateResource.read.1.tlog
+E:\dotnet_dev\sms-sb\SMS.Utilities\obj\Debug\GenerateResource.write.1.tlog
+E:\dotnet_dev\sms-sb\SMS.Utilities\obj\Debug\en-GB\VPR.Utilities.resources.dll
+E:\dotnet_dev\sms-sb\SMS.Utilities\obj\Debug\en-US\VPR.Utilities.resources.dll
+E:\dotnet_dev\sms-sb\SMS.Utilities\obj\Debug\VPR.Utilities.dll
+E:\dotnet_dev\sms-sb\SMS.Utilities\obj\Debug\VPR.Utilities.pdb

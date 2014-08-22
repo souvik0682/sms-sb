@@ -37,7 +37,7 @@ namespace VPR.WebApp.View
             if (!IsPostBack)
             {
                 PopulateRole();
-                PopulateLocation();
+                PopulateCompany();
                 LoadData();
             }
         }
@@ -198,10 +198,10 @@ namespace VPR.WebApp.View
             GeneralFunctions.PopulateDropDownList(ddlRole, lstRole, "Id", "Name", true);
         }
 
-        private void PopulateLocation()
+        private void PopulateCompany()
         {
             CommonBLL commonBll = new CommonBLL();
-            List<ILocation> lstLoc = commonBll.GetActiveLocation();
+            List<ICompany> lstLoc = commonBll.GetActiveCompany();
             GeneralFunctions.PopulateDropDownList(ddlLoc, lstLoc, "Id", "Name", true);
         }
 
@@ -216,7 +216,7 @@ namespace VPR.WebApp.View
                 txtLName.Text = user.LastName;
                 txtEmail.Text = user.EmailId;
                 ddlRole.SelectedValue = Convert.ToString(user.UserRole.Id);
-                ddlLoc.SelectedValue = Convert.ToString(user.UserLocation.Id);
+                ddlLoc.SelectedValue = Convert.ToString(user.UserCompany.Id);
 
                 //if (user.AllowMutipleLocation)
                 //    ddlMultiLoc.SelectedValue = "1";
@@ -270,7 +270,7 @@ namespace VPR.WebApp.View
             {
                 if (user.UserRole.LocationSpecific.HasValue && user.UserRole.LocationSpecific.Value)
                 {
-                    if (user.UserLocation.Id == 0)
+                    if (user.UserCompany.Id == 0)
                     {
                         isValid = false;
                         spnLoc.Style["display"] = "";
@@ -326,7 +326,7 @@ namespace VPR.WebApp.View
             user.LastName = txtLName.Text.Trim().ToUpper();
             user.EmailId = txtEmail.Text.Trim().ToUpper();
             user.UserRole.Id = Convert.ToInt32(ddlRole.SelectedValue);
-            user.UserLocation.Id = Convert.ToInt32(ddlLoc.SelectedValue);
+            user.UserCompany.Id = Convert.ToInt32(ddlLoc.SelectedValue);
 
             IRole role = new UserBLL().GetRole(Convert.ToInt32(ddlRole.SelectedValue));
 

@@ -13,7 +13,7 @@ namespace VPR.Common
         string LastName { get; set; }
         string UserFullName { get; }
         IRole UserRole { get; set; }
-        ILocation UserLocation { get; set; }
+        ICompany UserCompany { get; set; }
         string EmailId { get; set; }
         bool IsActive { get; set; }
         bool AllowMutipleLocation { get; set; }

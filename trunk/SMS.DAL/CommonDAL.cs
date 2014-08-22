@@ -105,20 +105,21 @@ namespace VPR.DAL
             }
         }
 
-        public static int SaveLocation(ILocation loc, int modifiedBy)
+        public static int SaveCompany(ICompany loc, int modifiedBy)
         {
-            string strExecution = "[dbo].[uspSaveLocation]";
+            string strExecution = "[dbo].[uspSaveCompany]";
             int result = 0;
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
-                oDq.AddIntegerParam("@LocId", loc.Id);
-                oDq.AddVarcharParam("@LocName", 50, loc.Name);
-                oDq.AddVarcharParam("@LocAddress", 200, loc.LocAddress.Address);
-                oDq.AddVarcharParam("@LocCity", 20, loc.LocAddress.City);
-                oDq.AddVarcharParam("@LocPin", 10, loc.LocAddress.Pin);
-                oDq.AddVarcharParam("@LocAbbr", 3, loc.Abbreviation);
-                oDq.AddVarcharParam("@LocPhone", 30, loc.Phone);
+                oDq.AddIntegerParam("@CompId", loc.Id);
+                oDq.AddVarcharParam("@CompName", 50, loc.CompName);
+                oDq.AddVarcharParam("@CompAddress", 200, loc.CompAddress.Address);
+                oDq.AddVarcharParam("@CompAddress2", 200, loc.CompAddress.Address2);
+                oDq.AddVarcharParam("@LocCity", 20, loc.CompAddress.City);
+                oDq.AddVarcharParam("@LocPin", 10, loc.CompAddress.Pin);
+                oDq.AddVarcharParam("@LocAbbr", 3, loc.ContactPerson);
+                oDq.AddVarcharParam("@LocPhone", 30, loc.CompPhone);
                 //oDq.AddIntegerParam("@ManagerId", loc.ManagerId);
                 oDq.AddCharParam("@IsActive", 1, loc.IsActive);
                 oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
@@ -131,10 +132,10 @@ namespace VPR.DAL
             return result;
         }
         //New Function Added By Souvik - 11-06-2013
-        public static List<ILocation> GetLocation_New(char isActiveOnly, int UserId, SearchCriteria searchCriteria)
+        public static List<ICompany> GetLocation_New(char isActiveOnly, int UserId, SearchCriteria searchCriteria)
         {
-            string strExecution = "[common].[uspGetLocation_New]"; //Create a new SP with this Name (Previous one was : uspGetLocation)
-            List<ILocation> lstLoc = new List<ILocation>();
+            string strExecution = "[dbo].[uspGetLocation_New]"; //Create a new SP with this Name (Previous one was : uspGetLocation)
+            List<ICompany> lstLoc = new List<ICompany>();
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
@@ -148,7 +149,7 @@ namespace VPR.DAL
 
                 while (reader.Read())
                 {
-                    ILocation loc = new LocationEntity(reader);
+                    ICompany loc = new CompanyEntity(reader);
                     lstLoc.Add(loc);
                 }
 
@@ -158,10 +159,10 @@ namespace VPR.DAL
             return lstLoc;
         }
 
-        public static List<ILocation> GetLocation(char isActiveOnly, SearchCriteria searchCriteria)
+        public static List<ICompany> GetLocation(char isActiveOnly, SearchCriteria searchCriteria)
         {
             string strExecution = "[dbo].[uspGetLocation]";
-            List<ILocation> lstLoc = new List<ILocation>();
+            List<ICompany> lstLoc = new List<ICompany>();
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
@@ -174,7 +175,7 @@ namespace VPR.DAL
 
                 while (reader.Read())
                 {
-                    ILocation loc = new LocationEntity(reader);
+                    ICompany loc = new CompanyEntity(reader);
                     lstLoc.Add(loc);
                 }
 
@@ -184,37 +185,41 @@ namespace VPR.DAL
             return lstLoc;
         }
 
-        //public static List<ISlot> GetOperator(SearchCriteria searchCriteria)
-        //{
-        //    string strExecution = "[exp].[prcGetSlotOperatorList]";
-        //    List<ISlot> lstSlot = new List<ISlot>();
-
-        //    using (DbQuery oDq = new DbQuery(strExecution))
-        //    {
-        //        oDq.AddVarcharParam("@SchOperatorName", 50, searchCriteria.SlotOperatorName);
-        //        oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
-        //        oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
-        //        DataTableReader reader = oDq.GetTableReader();
-
-        //        while (reader.Read())
-        //        {
-        //            ISlot Oper = new SlotEntity(reader);
-        //            lstSlot.Add(Oper);
-        //        }
-
-        //        reader.Close();
-        //    }
-
-        //    return lstSlot;
-        //}
-        public static ILocation GetLocation(int locId, char isActiveOnly, SearchCriteria searchCriteria)
+        public static List<ICompany> GetCompany(char isActiveOnly, SearchCriteria searchCriteria)
         {
-            string strExecution = "[dbo].[uspGetLocation]";
-            ILocation loc = null;
+            string strExecution = "[dbo].[uspGetCompany]"; //Create a new SP with this Name (Previous one was : uspGetLocation)
+            List<ICompany> lstLoc = new List<ICompany>();
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
-                oDq.AddIntegerParam("@LocId", locId);
+                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+
+                oDq.AddVarcharParam("@SchCountry", 3, searchCriteria.Country);
+                oDq.AddVarcharParam("@SchCompName", 50, searchCriteria.Company);
+                oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
+                oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
+                DataTableReader reader = oDq.GetTableReader();
+
+                while (reader.Read())
+                {
+                    ICompany loc = new CompanyEntity(reader);
+                    lstLoc.Add(loc);
+                }
+
+                reader.Close();
+            }
+
+            return lstLoc;
+        }
+
+        public static ICompany GetCompany(int CompId, char isActiveOnly, SearchCriteria searchCriteria)
+        {
+            string strExecution = "[dbo].[uspGetCompany]";
+            ICompany loc = null;
+
+            using (DbQuery oDq = new DbQuery(strExecution))
+            {
+                oDq.AddIntegerParam("@LocId", CompId);
                 oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
                 oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
                 oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
@@ -222,7 +227,7 @@ namespace VPR.DAL
 
                 while (reader.Read())
                 {
-                    loc = new LocationEntity(reader);
+                    loc = new CompanyEntity(reader);
                 }
 
                 reader.Close();
@@ -231,45 +236,11 @@ namespace VPR.DAL
             return loc;
         }
 
-        //public static void SaveLocation(ILocation loc, int modifiedBy)
-        //{
-        //    string strExecution = "[common].[uspSaveLocation]";
-
-        //    using (DbQuery oDq = new DbQuery(strExecution))
-        //    {
-        //        oDq.AddIntegerParam("@LocId", loc.Id);
-        //        oDq.AddIntegerParam("@PGRFreeDays", loc.PGRFreeDays);
-        //        oDq.AddVarcharParam("@CanFooter", 300, loc.CanFooter);
-        //        oDq.AddVarcharParam("@SlotFooter", 300, loc.SlotFooter);
-        //        oDq.AddVarcharParam("@CartingFooter", 300, loc.CartingFooter);
-        //        oDq.AddVarcharParam("@PickUpFooter", 3000, loc.PickUpFooter);
-        //        oDq.AddVarcharParam("@CustomHouseCode", 6, loc.CustomHouseCode);
-        //        oDq.AddVarcharParam("@GatewayPort", 6, loc.GatewayPort);
-        //        oDq.AddVarcharParam("@ICEGateLoginD", 20, loc.ICEGateLoginD);
-        //        oDq.AddVarcharParam("@PCSLoginID", 8, loc.PCSLoginID);
-        //        oDq.AddVarcharParam("@ISO20", 4, loc.ISO20);
-        //        oDq.AddVarcharParam("@ISO40", 4, loc.ISO40);
-        //        oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
-        //        oDq.RunActionQuery();
-        //    }
-        //}
-
-        //public static void DeleteLocation(int locId, int modifiedBy)
-        //{
-        //    string strExecution = "[common].[uspDeleteLocation]";
-
-        //    using (DbQuery oDq = new DbQuery(strExecution))
-        //    {
-        //        oDq.AddIntegerParam("@LocId", locId);
-        //        oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
-        //        oDq.RunActionQuery();
-        //    }
-        //}
-
-        public static List<ILocation> GetLocationByUser(int userId)
+        
+        public static List<ICompany> GetCompanyByUser(int userId)
         {
-            string strExecution = "[common].[uspGetLocationByUser]";
-            List<ILocation> lstLoc = new List<ILocation>();
+            string strExecution = "[dbo].[uspGetCompanyByUser]";
+            List<ICompany> lstLoc = new List<ICompany>();
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
@@ -278,7 +249,7 @@ namespace VPR.DAL
 
                 while (reader.Read())
                 {
-                    ILocation loc = new LocationEntity(reader);
+                    ICompany loc = new CompanyEntity(reader);
                     lstLoc.Add(loc);
                 }
 
@@ -290,137 +261,7 @@ namespace VPR.DAL
 
         #endregion
 
-        #region Area
-
-        //public static List<IArea> GetArea(char isActiveOnly, SearchCriteria searchCriteria)
-        //{
-        //    string strExecution = "[common].[uspGetArea]";
-        //    List<IArea> lstArea = new List<IArea>();
-
-        //    using (DbQuery oDq = new DbQuery(strExecution))
-        //    {
-        //        oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
-        //        oDq.AddVarcharParam("@SchLocName", 50, searchCriteria.LocName);
-        //        oDq.AddVarcharParam("@SchAreaName", 50, searchCriteria.AreaName);
-        //        oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
-        //        oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
-        //        DataTableReader reader = oDq.GetTableReader();
-
-        //        while (reader.Read())
-        //        {
-        //            IArea area = new AreaEntity(reader);
-        //            lstArea.Add(area);
-        //        }
-
-        //        reader.Close();
-        //    }
-
-        //    return lstArea;
-        //}
-
-        //public static IArea GetArea(int areaId, char isActiveOnly, SearchCriteria searchCriteria)
-        //{
-        //    string strExecution = "[common].[uspGetArea]";
-        //    IArea area = null;
-
-        //    using (DbQuery oDq = new DbQuery(strExecution))
-        //    {
-        //        oDq.AddIntegerParam("@AreaId", areaId);
-        //        oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
-        //        oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
-        //        oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
-        //        DataTableReader reader = oDq.GetTableReader();
-
-        //        while (reader.Read())
-        //        {
-        //            area = new AreaEntity(reader);
-        //        }
-
-        //        reader.Close();
-        //    }
-
-        //    return area;
-        //}
-
-        //public static int SaveArea(IArea area, int modifiedBy)
-        //{
-        //    string strExecution = "[common].[uspSaveArea]";
-        //    int result = 0;
-
-        //    using (DbQuery oDq = new DbQuery(strExecution))
-        //    {
-        //        oDq.AddIntegerParam("@AreaId", area.Id);
-        //        oDq.AddVarcharParam("@AreaName", 50, area.Name);
-        //        oDq.AddVarcharParam("@PinCode", 10, area.PinCode);
-        //        oDq.AddIntegerParam("@LocId", area.Location.Id);
-        //        oDq.AddCharParam("@IsActive", 1, area.IsActive);
-        //        oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
-        //        oDq.AddIntegerParam("@Result", result, QueryParameterDirection.Output);
-        //        oDq.RunActionQuery();
-        //        result = Convert.ToInt32(oDq.GetParaValue("@Result"));
-        //    }
-
-        //    return result;
-        //}
-
-        //public static void DeleteArea(int areaId, int modifiedBy)
-        //{
-        //    string strExecution = "[common].[uspDeleteArea]";
-
-        //    using (DbQuery oDq = new DbQuery(strExecution))
-        //    {
-        //        oDq.AddIntegerParam("@AreaId", areaId);
-        //        oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
-        //        oDq.RunActionQuery();
-        //    }
-        //}
-
-        //public static List<IArea> GetAreaByLocation(int locId)
-        //{
-        //    string strExecution = "[common].[uspGetAreaByLocation]";
-        //    List<IArea> lstArea = new List<IArea>();
-
-        //    using (DbQuery oDq = new DbQuery(strExecution))
-        //    {
-        //        oDq.AddIntegerParam("@LocId", locId);
-        //        DataTableReader reader = oDq.GetTableReader();
-
-        //        while (reader.Read())
-        //        {
-        //            IArea area = new AreaEntity(reader);
-        //            lstArea.Add(area);
-        //        }
-
-        //        reader.Close();
-        //    }
-
-        //    return lstArea;
-        //}
-
-        public static List<IArea> GetAreaByLocationAndPinCode(int locId, string pinCode)
-        {
-            string strExecution = "[common].[uspAreaByLocationAndPinCode]";
-            List<IArea> lstArea = new List<IArea>();
-
-            using (DbQuery oDq = new DbQuery(strExecution))
-            {
-                oDq.AddIntegerParam("@LocId", locId);
-                oDq.AddVarcharParam("@PinCode", 10, pinCode);
-                DataTableReader reader = oDq.GetTableReader();
-
-                while (reader.Read())
-                {
-                    IArea area = new AreaEntity(reader);
-                    lstArea.Add(area);
-                }
-
-                reader.Close();
-            }
-
-            return lstArea;
-        }
-
-        #endregion
+        
 
         #region Group Company
 
@@ -447,216 +288,6 @@ namespace VPR.DAL
             }
 
             return lstGroupCompany;
-        }
-
-        #endregion
-
-        #region Customer
-
-        public static List<ICustomer> GetCustomerList(char isActiveOnly, SearchCriteria searchCriteria)
-        {
-            string strExecution = "[common].[uspGetCustomerList]";
-            List<ICustomer> lstCustomer = new List<ICustomer>();
-
-            using (DbQuery oDq = new DbQuery(strExecution))
-            {
-                oDq.AddIntegerParam("@UserId", searchCriteria.UserId);
-                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
-                oDq.AddVarcharParam("@SchLocAbbr", 3, searchCriteria.LocAbbr);
-                oDq.AddVarcharParam("@SchCustName", 60, searchCriteria.CustomerName);
-                oDq.AddVarcharParam("@SchGroupName", 50, searchCriteria.GroupName);
-                oDq.AddVarcharParam("@SchExecutiveName", 50, searchCriteria.ExecutiveName);
-                oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
-                oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
-                DataTableReader reader = oDq.GetTableReader();
-
-                while (reader.Read())
-                {
-                    ICustomer customer = new CustomerEntity(reader);
-                    lstCustomer.Add(customer);
-                }
-
-                reader.Close();
-            }
-
-            return lstCustomer;
-        }
-
-        public static List<ICustomer> GetCustomer(char isActiveOnly, SearchCriteria searchCriteria)
-        {
-            string strExecution = "[common].[uspGetCustomer]";
-            List<ICustomer> lstCustomer = new List<ICustomer>();
-
-            using (DbQuery oDq = new DbQuery(strExecution))
-            {
-                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
-                oDq.AddVarcharParam("@SchLocAbbr", 3, searchCriteria.LocAbbr);
-                oDq.AddVarcharParam("@SchCustName", 60, searchCriteria.CustomerName);
-                oDq.AddVarcharParam("@SchGroupName", 50, searchCriteria.GroupName);
-                oDq.AddIntegerParam("@SalesExecutiveId", searchCriteria.UserId);
-                oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
-                oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
-                DataTableReader reader = oDq.GetTableReader();
-
-                while (reader.Read())
-                {
-                    ICustomer customer = new CustomerEntity(reader);
-                    lstCustomer.Add(customer);
-                }
-
-                reader.Close();
-            }
-
-            return lstCustomer;
-        }
-
-        public static ICustomer GetCustomer(int customerId, char isActiveOnly, SearchCriteria searchCriteria)
-        {
-            string strExecution = "[common].[uspGetCustomer]";
-            ICustomer customer = null;
-
-            using (DbQuery oDq = new DbQuery(strExecution))
-            {
-                oDq.AddIntegerParam("@CustId", customerId);
-                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
-                oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
-                oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
-                DataTableReader reader = oDq.GetTableReader();
-
-                while (reader.Read())
-                {
-                    customer = new CustomerEntity(reader);
-                }
-
-                reader.Close();
-            }
-
-            return customer;
-        }
-
-        //public static int SaveCustomer(ICustomer customer, int modifiedBy)
-        //{
-        //    string strExecution = "[common].[uspSaveCustomer]";
-        //    int result = 0;
-
-        //    using (DbQuery oDq = new DbQuery(strExecution))
-        //    {
-        //        oDq.AddIntegerParam("@CustId", customer.Id);
-        //        oDq.AddIntegerParam("@GroupId", customer.Group.Id);
-        //        oDq.AddIntegerParam("@LocId", customer.Location.Id);
-        //        oDq.AddIntegerParam("@AreaId", customer.Area.Id);
-        //        oDq.AddIntegerParam("@CustTypeId", customer.CustType.Id);
-        //        oDq.AddCharParam("@CorporateOrLocal", 1, customer.CorporateOrLocal);
-        //        oDq.AddVarcharParam("@CustomerName", 60, customer.Name);
-        //        oDq.AddVarcharParam("@Address", 200, customer.Address.Address);
-        //        oDq.AddVarcharParam("@City", 50, customer.Address.City);
-        //        oDq.AddVarcharParam("@Pin", 10, customer.Address.Pin);
-        //        oDq.AddVarcharParam("@Phone1", 50, customer.Phone1);
-        //        oDq.AddVarcharParam("@Phone2", 50, customer.Phone2);
-        //        oDq.AddVarcharParam("@ContactPerson1", 50, customer.ContactPerson1.Name);
-        //        oDq.AddVarcharParam("@ContactDesignation1", 50, customer.ContactPerson1.Designation);
-        //        oDq.AddVarcharParam("@ContactMobile1", 15, customer.ContactPerson1.Mobile);
-        //        oDq.AddVarcharParam("@ContactEmailId1", 50, customer.ContactPerson1.EmailId);
-        //        oDq.AddVarcharParam("@ContactPerson2", 50, customer.ContactPerson2.Name);
-        //        oDq.AddVarcharParam("@ContactDesignation2", 50, customer.ContactPerson2.Designation);
-        //        oDq.AddVarcharParam("@ContactMobile2", 15, customer.ContactPerson2.Mobile);
-        //        oDq.AddVarcharParam("@ContactEmailId2", 50, customer.ContactPerson2.EmailId);
-        //        oDq.AddVarcharParam("@CustomerProfile", 500, customer.CustomerProfile);
-        //        oDq.AddVarcharParam("@PAN", 10, customer.PAN);
-        //        oDq.AddVarcharParam("@TAN", 15, customer.TAN);
-        //        oDq.AddVarcharParam("@BIN", 15, customer.BIN);
-        //        oDq.AddVarcharParam("@IEC", 15, customer.IEC);
-        //        oDq.AddIntegerParam("@SalesExecutiveId", customer.SalesExecutiveId);
-        //        oDq.AddCharParam("@IsActive", 1, customer.IsActive);
-        //        oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
-        //        oDq.AddIntegerParam("@Result", result, QueryParameterDirection.Output);
-        //        oDq.RunActionQuery();
-        //        result = Convert.ToInt32(oDq.GetParaValue("@Result"));
-        //    }
-
-        //    return result;
-        //}
-
-        //public static void DeleteCustomer(int customerId, int modifiedBy)
-        //{
-        //    string strExecution = "[common].[uspDeleteCustomer]";
-
-        //    using (DbQuery oDq = new DbQuery(strExecution))
-        //    {
-        //        oDq.AddIntegerParam("@CustId", customerId);
-        //        oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
-        //        oDq.RunActionQuery();
-        //    }
-        //}
-
-        //public static List<ICustomer> GetCustomerByUser(int salesExecutiveId)
-        //{
-        //    string strExecution = "[common].[uspGetCustomerByUser]";
-        //    List<ICustomer> lstCustomer = new List<ICustomer>();
-
-        //    using (DbQuery oDq = new DbQuery(strExecution))
-        //    {
-        //        oDq.AddIntegerParam("@SalesExecutiveId", salesExecutiveId);
-        //        DataTableReader reader = oDq.GetTableReader();
-
-        //        while (reader.Read())
-        //        {
-        //            ICustomer customer = new CustomerEntity(reader);
-        //            lstCustomer.Add(customer);
-        //        }
-
-        //        reader.Close();
-        //    }
-
-        //    return lstCustomer;
-        //}
-
-        #endregion
-
-        #region Customer Type
-
-        public static List<ICustomerType> GetCustomerType(char isActiveOnly)
-        {
-            string strExecution = "[common].[uspGetCustomerType]";
-            List<ICustomerType> lstCustomerType = new List<ICustomerType>();
-
-            using (DbQuery oDq = new DbQuery(strExecution))
-            {
-                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
-                DataTableReader reader = oDq.GetTableReader();
-
-                while (reader.Read())
-                {
-                    ICustomerType customerType = new CustomerTypeEntity(reader);
-                    lstCustomerType.Add(customerType);
-                }
-
-                reader.Close();
-            }
-
-            return lstCustomerType;
-        }
-
-        public static ICustomerType GetCustomerType(int custTypeId, char isActiveOnly)
-        {
-            string strExecution = "[common].[uspGetCustomerType]";
-            ICustomerType customerType = null;
-
-            using (DbQuery oDq = new DbQuery(strExecution))
-            {
-                oDq.AddIntegerParam("@CustTypeId", custTypeId);
-                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
-                DataTableReader reader = oDq.GetTableReader();
-
-                while (reader.Read())
-                {
-                    customerType = new CustomerTypeEntity(reader);
-                }
-
-                reader.Close();
-            }
-
-            return customerType;
         }
 
         #endregion
@@ -724,70 +355,7 @@ namespace VPR.DAL
 
         }
 
-        #region BLHeader
-        public static DataTable GetBLHeaderByBLNo(long LocationId)
-        {
-            string strExecution = "[dbo].[uspGetBLHeaderByBLNo]";
-            DataTable myDataTable;
-
-            using (DbQuery oDq = new DbQuery(strExecution))
-            {
-                oDq.AddBigIntegerParam("@LocationId", LocationId);
-                myDataTable = oDq.GetTable();
-            }
-
-            return myDataTable;
-        }
-        #endregion
-
-        #region ExpBLHeader
-        public static DataTable GetExpBLHeaderByBLNo(long LocationId)
-        {
-            string strExecution = "[exp].[uspExpGetBLHeaderByBLNo]";
-            DataTable myDataTable;
-
-            using (DbQuery oDq = new DbQuery(strExecution))
-            {
-                oDq.AddBigIntegerParam("@LocationId", LocationId);
-                myDataTable = oDq.GetTable();
-            }
-
-            return myDataTable;
-        }
-
-        public static DataTable GetExpBL(long LocationId, long LineID, long VoyageID)
-        {
-            string strExecution = "[exp].[uspGetExpBLno]";
-            DataTable myDataTable;
-
-            using (DbQuery oDq = new DbQuery(strExecution))
-            {
-                oDq.AddBigIntegerParam("@LocationId", LocationId);
-                oDq.AddBigIntegerParam("@NVOCCId", LineID);
-                oDq.AddBigIntegerParam("@VoyageID", VoyageID);
-                myDataTable = oDq.GetTable();
-            }
-
-            return myDataTable;
-        }
-        #endregion
-        //#region Export
-        //public static DataTable GetExportVoyages(string Vessel)
-        //{
-        //    string strExecution = "[exp].[spGetVoyageByVesselID]";
-        //    DataTable myDataTable;
-
-        //    using (DbQuery oDq = new DbQuery(strExecution))
-        //    {
-        //        oDq.AddIntegerParam("@Vessel", Vessel.ToInt());
-        //        myDataTable = oDq.GetTable();
-        //    }
-
-        //    return myDataTable;
-        //}
-
-        //#endregion
-
+ 
         #region Report
 
         public static DataTable GenerateExcel(string Location, string Vessel, string PortOfDischarge, string Line, string Voyage, string VIANo)

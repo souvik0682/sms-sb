@@ -51,10 +51,10 @@ namespace VPR.DAL
                     user.FirstName = Convert.ToString(reader["FirstName"]);
                     user.LastName = Convert.ToString(reader["LastName"]);
                     user.UserRole.Id = Convert.ToInt32(reader["RoleId"]);
-                    user.UserLocation.Id = Convert.ToInt32(reader["LocId"]);
+                    user.UserCompany.Id = Convert.ToInt32(reader["CompId"]);
                     user.EmailId = Convert.ToString(reader["emailID"]);
-                    user.AllowMutipleLocation = Convert.ToBoolean(reader["AllowMutipleLocation"]);
-                    user.UserlocationSpecific = Convert.ToBoolean(reader["locationSpecific"]);
+                    //user.AllowMutipleLocation = Convert.ToBoolean(reader["AllowMutipleLocation"]);
+                    //user.UserlocationSpecific = Convert.ToBoolean(reader["locationSpecific"]);
 
                 }
 
@@ -125,7 +125,7 @@ namespace VPR.DAL
                 oDq.AddVarcharParam("@FirstName", 30, user.FirstName);
                 oDq.AddVarcharParam("@LastName", 30, user.LastName);
                 oDq.AddIntegerParam("@RoleId", user.UserRole.Id);
-                oDq.AddIntegerParam("@LocId", user.UserLocation.Id);
+                oDq.AddIntegerParam("@LocId", user.UserCompany.Id);
                 oDq.AddVarcharParam("@EmailId", 50, user.EmailId);
                 oDq.AddBooleanParam("@IsActive", user.IsActive);
                 oDq.AddBooleanParam("@AllowMutipleLocation", user.AllowMutipleLocation);

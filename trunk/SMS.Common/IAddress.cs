@@ -8,6 +8,7 @@ namespace VPR.Common
     public interface IAddress
     {
         string Address { get; set; }
+        string Address2 { get; set; }
         string City { get; set; }
         string Pin { get; set; }
     }

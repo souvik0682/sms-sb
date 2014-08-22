@@ -2,3 +2,8 @@ F:\Code\SMS\SMS.Common\bin\Debug\VPR.Common.dll
 F:\Code\SMS\SMS.Common\bin\Debug\VPR.Common.pdb
 F:\Code\SMS\SMS.Common\obj\Debug\VPR.Common.dll
 F:\Code\SMS\SMS.Common\obj\Debug\VPR.Common.pdb
+E:\dotnet_dev\sms-sb\SMS.Common\obj\Debug\ResolveAssemblyReference.cache
+E:\dotnet_dev\sms-sb\SMS.Common\obj\Debug\VPR.Common.dll
+E:\dotnet_dev\sms-sb\SMS.Common\obj\Debug\VPR.Common.pdb
+E:\dotnet_dev\sms-sb\SMS.Common\bin\Debug\VPR.Common.dll
+E:\dotnet_dev\sms-sb\SMS.Common\bin\Debug\VPR.Common.pdb

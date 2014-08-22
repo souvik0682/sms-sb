@@ -82,7 +82,7 @@ namespace VPR.Entity
 
         #region ILocation Members
 
-        public ILocation UserLocation
+        public ICompany UserCompany
         {
             get;
             set;
@@ -139,7 +139,7 @@ namespace VPR.Entity
         public UserEntity()
         {
             this.UserRole = new RoleEntity();
-            this.UserLocation = new LocationEntity();
+            this.UserCompany = new CompanyEntity();
         }
 
         public UserEntity(DataTableReader reader)
@@ -152,9 +152,9 @@ namespace VPR.Entity
             this.UserRole.Id = Convert.ToInt32(reader["RoleId"]);
             this.UserRole.Name = Convert.ToString(reader["RoleName"]);
 
-            this.UserLocation = new LocationEntity();
-            this.UserLocation.Id = Convert.ToInt32(reader["LocId"]);
-            this.UserLocation.Name = Convert.ToString(reader["LocName"]);
+            this.UserCompany = new CompanyEntity();
+            this.UserCompany.Id = Convert.ToInt32(reader["CompId"]);
+            this.UserCompany.Name = Convert.ToString(reader["CompName"]);
 
             //if (ColumnExists(reader, "locationSpecific"))
             //    this.UserlocationSpecific = Convert.ToBoolean(reader["locationSpecific"]);
@@ -163,7 +163,7 @@ namespace VPR.Entity
                 this.EmailId = Convert.ToString(reader["EmailId"]);
 
             if (ColumnExists(reader, "UserActive") && reader["UserActive"] != DBNull.Value) this.IsActive = Convert.ToBoolean(reader["UserActive"]);
-            if (ColumnExists(reader, "AllowMutipleLocation") && reader["AllowMutipleLocation"] != DBNull.Value) this.AllowMutipleLocation = Convert.ToBoolean(reader["AllowMutipleLocation"]);
+            //if (ColumnExists(reader, "AllowMutipleLocation") && reader["AllowMutipleLocation"] != DBNull.Value) this.AllowMutipleLocation = Convert.ToBoolean(reader["AllowMutipleLocation"]);
         }
 
         #endregion

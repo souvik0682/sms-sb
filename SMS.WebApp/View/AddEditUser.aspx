@@ -50,7 +50,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Location:<span class="errormessage1">*</span></td>
+                    <td>Company:<span class="errormessage1">*</span></td>
                     <td>
                         <asp:DropDownList ID="ddlLoc" runat="server"></asp:DropDownList><br />
                         <span id="spnLoc" runat="server" class="errormessage" style="display:none;"></span>

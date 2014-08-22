@@ -72,7 +72,7 @@ namespace VPR.BLL
 
                 if (!ReferenceEquals(user, null))
                 {
-                    uloc = user.UserLocation.Id;
+                    uloc = user.UserCompany.Id;
                 }
             }
 

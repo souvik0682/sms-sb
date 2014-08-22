@@ -17,6 +17,12 @@ namespace VPR.Entity
             set;
         }
 
+        public string Address2
+        {
+            get;
+            set;
+        }
+
         public string City
         {
             get;
@@ -41,6 +47,7 @@ namespace VPR.Entity
         public AddressEntity(DataTableReader reader)
         {
             this.Address = Convert.ToString(reader["Address"]);
+            this.Address2 = Convert.ToString(reader["Address2"]);
             this.City = Convert.ToString(reader["City"]);
             this.Pin = Convert.ToString(reader["Pin"]);
         }

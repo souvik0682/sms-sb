@@ -42,14 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAddress.cs" />
-    <Compile Include="IArea.cs" />
     <Compile Include="IBase.cs" />
     <Compile Include="IContactPerson.cs" />
     <Compile Include="IContainerType.cs" />
-    <Compile Include="ICustomer.cs" />
     <Compile Include="ICustomerType.cs" />
     <Compile Include="IGroupCompany.cs" />
-    <Compile Include="ILocation.cs" />
+    <Compile Include="ICompany.cs" />
     <Compile Include="IRoleMenu.cs" />
     <Compile Include="IMenu.cs" />
     <Compile Include="ICommon.cs" />

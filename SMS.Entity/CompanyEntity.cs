@@ -47,7 +47,7 @@ namespace VPR.Entity
             set;
         }
 
-        public char IsActive
+        public bool IsActive
         {
             get;
             set;
@@ -113,7 +113,7 @@ namespace VPR.Entity
             this.CompAddress = new AddressEntity(reader);
             this.ContactPerson = Convert.ToString(reader["ContactPerson"]);
             this.CompPhone = Convert.ToString(reader["CompPhone"]);
-            this.IsActive = Convert.ToChar(reader["CompActive"]);
+            this.IsActive = Convert.ToBoolean(reader["CompActive"]);
             this.fk_CountryID = Convert.ToInt32(reader["fk_CountryID"]);
             if (ColumnExists(reader, "fk_StateID"))
             {

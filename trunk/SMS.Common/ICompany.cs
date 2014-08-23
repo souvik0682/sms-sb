@@ -11,9 +11,12 @@ namespace VPR.Common
         int Id { get; set; }
         string CompName { get; set; }
         string CompPhone { get; set; }
+        string RegMobile { get; set; }
         string ContactPerson { get; set; }
+        string EmailID { get; set; }
         int fk_CountryID { get; set; }
         int? fk_StateID { get; set; }
         bool IsActive { get; set; }
+        string ProductInterest { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManageUser.aspx.cs" Inherits="VPR.WebApp.View.ManageUser" MasterPageFile="~/Site.Master" Title=":: VPR :: Manage User" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManageUser.aspx.cs" Inherits="VPR.WebApp.View.ManageUser" MasterPageFile="~/Site.Master" Title=":: SMS :: Manage User" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script src="../Scripts/Common.js" type="text/javascript"></script>

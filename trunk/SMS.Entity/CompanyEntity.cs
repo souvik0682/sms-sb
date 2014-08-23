@@ -53,6 +53,29 @@ namespace VPR.Entity
             set;
         }
 
+        public string Country
+        {
+            get;
+            set;
+        }
+
+        public string StateName
+        {
+            get;
+            set;
+        }
+
+        public string City
+        {
+            get;
+            set;
+        }
+
+        public string PIN
+        {
+            get;
+            set;
+        }
         #endregion
 
         #region ICommon Members
@@ -120,6 +143,29 @@ namespace VPR.Entity
                 if (reader["fk_StateID"] != DBNull.Value)
                     this.fk_StateID = Convert.ToInt32(reader["fk_StateID"]);
             }
+            if (ColumnExists(reader, "Country"))
+            {
+                if (reader["Country"] != DBNull.Value)
+                    this.Country = Convert.ToString(reader["Country"]);
+            }
+            if (ColumnExists(reader, "StateName"))
+            {
+                if (reader["StateName"] != DBNull.Value)
+                    this.StateName = Convert.ToString(reader["StateName"]);
+            }
+
+            if (ColumnExists(reader, "City"))
+            {
+                if (reader["City"] != DBNull.Value)
+                    this.StateName = Convert.ToString(reader["City"]);
+            }
+
+            if (ColumnExists(reader, "PIN"))
+            {
+                if (reader["PIN"] != DBNull.Value)
+                    this.StateName = Convert.ToString(reader["PIN"]);
+            }
+
         }
 
         #endregion

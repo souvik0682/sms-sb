@@ -14,6 +14,6 @@ namespace VPR.Common
         string ContactPerson { get; set; }
         int fk_CountryID { get; set; }
         int? fk_StateID { get; set; }
-        char IsActive { get; set; }
+        bool IsActive { get; set; }
     }
 }

@@ -267,7 +267,7 @@ namespace VPR.BLL
         {
             SearchCriteria searchCriteria = new SearchCriteria();
             SetDefaultSearchCriteriaForLocation(searchCriteria);
-            return CommonDAL.GetCompany('Y', searchCriteria);
+            return CommonDAL.GetCompany(true, searchCriteria);
             //return CommonDAL.GetCountry();
         }
 

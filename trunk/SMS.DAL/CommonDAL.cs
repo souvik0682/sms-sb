@@ -121,7 +121,7 @@ namespace VPR.DAL
                 oDq.AddVarcharParam("@LocAbbr", 3, loc.ContactPerson);
                 oDq.AddVarcharParam("@LocPhone", 30, loc.CompPhone);
                 //oDq.AddIntegerParam("@ManagerId", loc.ManagerId);
-                oDq.AddCharParam("@IsActive", 1, loc.IsActive);
+                oDq.AddBooleanParam("@IsActive", loc.IsActive);
                 oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
                 oDq.AddIntegerParam("@Result", result, QueryParameterDirection.Output);
                 oDq.RunActionQuery();
@@ -185,14 +185,14 @@ namespace VPR.DAL
             return lstLoc;
         }
 
-        public static List<ICompany> GetCompany(char isActiveOnly, SearchCriteria searchCriteria)
+        public static List<ICompany> GetCompany(bool isActiveOnly, SearchCriteria searchCriteria)
         {
             string strExecution = "[dbo].[uspGetCompany]"; //Create a new SP with this Name (Previous one was : uspGetLocation)
             List<ICompany> lstLoc = new List<ICompany>();
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
-                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                oDq.AddBooleanParam("@IsActiveOnly", isActiveOnly);
 
                 oDq.AddVarcharParam("@SchCountry", 3, searchCriteria.Country);
                 oDq.AddVarcharParam("@SchCompName", 50, searchCriteria.Company);

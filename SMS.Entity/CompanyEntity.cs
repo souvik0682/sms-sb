@@ -76,6 +76,24 @@ namespace VPR.Entity
             get;
             set;
         }
+
+        public string EmailID
+        {
+            get;
+            set;
+        }
+
+        public string RegMobile
+        {
+            get;
+            set;
+        }
+
+        public string ProductInterest
+        {
+            get;
+            set;
+        }
         #endregion
 
         #region ICommon Members
@@ -131,13 +149,35 @@ namespace VPR.Entity
 
         public CompanyEntity(DataTableReader reader)
         {
-            this.Id = Convert.ToInt32(reader["Id"]);
-            this.CompName = Convert.ToString(reader["CompName"]);
-            this.CompAddress = new AddressEntity(reader);
-            this.ContactPerson = Convert.ToString(reader["ContactPerson"]);
-            this.CompPhone = Convert.ToString(reader["CompPhone"]);
-            this.IsActive = Convert.ToBoolean(reader["CompActive"]);
-            this.fk_CountryID = Convert.ToInt32(reader["fk_CountryID"]);
+            if (ColumnExists(reader, "Id"))
+                if (reader["Id"] != DBNull.Value)
+                    this.Id = Convert.ToInt32(reader["Id"]);
+
+            if (ColumnExists(reader, "CompName"))
+                if (reader["CompName"] != DBNull.Value)
+                    this.CompName = Convert.ToString(reader["CompName"]);
+
+            if (ColumnExists(reader, "Address"))
+                if (reader["Address"] != DBNull.Value)
+                        this.CompAddress = new AddressEntity(reader);
+
+            if (ColumnExists(reader, "ContactPerson"))
+                if (reader["ContactPerson"] != DBNull.Value)
+                    this.ContactPerson = Convert.ToString(reader["ContactPerson"]);
+
+            if (ColumnExists(reader, "CompPhone"))
+                if (reader["CompPhone"] != DBNull.Value)
+                    this.CompPhone = Convert.ToString(reader["CompPhone"]);
+
+
+            if (ColumnExists(reader, "CompActive"))
+                if (reader["CompActive"] != DBNull.Value)
+                    this.IsActive = Convert.ToBoolean(reader["CompActive"]);
+
+            if (ColumnExists(reader, "fk_CountryID"))
+                if (reader["fk_CountryID"] != DBNull.Value)
+                    this.fk_CountryID = Convert.ToInt32(reader["fk_CountryID"]);
+
             if (ColumnExists(reader, "fk_StateID"))
             {
                 if (reader["fk_StateID"] != DBNull.Value)
@@ -164,6 +204,24 @@ namespace VPR.Entity
             {
                 if (reader["PIN"] != DBNull.Value)
                     this.StateName = Convert.ToString(reader["PIN"]);
+            }
+
+            if (ColumnExists(reader, "EmailID"))
+            {
+                if (reader["EmailID"] != DBNull.Value)
+                    this.EmailID = Convert.ToString(reader["EmailID"]);
+            }
+
+            if (ColumnExists(reader, "RegMobile"))
+            {
+                if (reader["RegMobile"] != DBNull.Value)
+                    this.RegMobile = Convert.ToString(reader["RegMobile"]);
+            }
+
+            if (ColumnExists(reader, "ProductInterest"))
+            {
+                if (reader["ProductInterest"] != DBNull.Value)
+                    this.ProductInterest = Convert.ToString(reader["ProductInterest"]);
             }
 
         }

@@ -23,6 +23,12 @@ namespace VPR.Entity
             set;
         }
 
+        public string CompType
+        {
+            get;
+            set;
+        }
+
         public string CompPhone
         {
             get;
@@ -197,13 +203,13 @@ namespace VPR.Entity
             if (ColumnExists(reader, "City"))
             {
                 if (reader["City"] != DBNull.Value)
-                    this.StateName = Convert.ToString(reader["City"]);
+                    this.City = Convert.ToString(reader["City"]);
             }
 
             if (ColumnExists(reader, "PIN"))
             {
                 if (reader["PIN"] != DBNull.Value)
-                    this.StateName = Convert.ToString(reader["PIN"]);
+                    this.PIN = Convert.ToString(reader["PIN"]);
             }
 
             if (ColumnExists(reader, "EmailID"))
@@ -222,6 +228,12 @@ namespace VPR.Entity
             {
                 if (reader["ProductInterest"] != DBNull.Value)
                     this.ProductInterest = Convert.ToString(reader["ProductInterest"]);
+            }
+
+            if (ColumnExists(reader, "CompType"))
+            {
+                if (reader["CompType"] != DBNull.Value)
+                    this.CompType = Convert.ToString(reader["CompType"]);
             }
 
         }

@@ -68,6 +68,12 @@ namespace VPR.Entity
             set;
         }
 
+        public string MobileNo
+        {
+            get;
+            set;
+        }
+
         #endregion
 
         #region IRole Members
@@ -156,6 +162,8 @@ namespace VPR.Entity
             this.UserCompany.Id = Convert.ToInt32(reader["CompId"]);
             this.UserCompany.Name = Convert.ToString(reader["CompName"]);
 
+            if (reader["MobileNo"] != DBNull.Value)
+                this.MobileNo = Convert.ToString(reader["MobileNo"]);
             //if (ColumnExists(reader, "locationSpecific"))
             //    this.UserlocationSpecific = Convert.ToBoolean(reader["locationSpecific"]);
 

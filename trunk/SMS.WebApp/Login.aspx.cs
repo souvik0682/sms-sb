@@ -119,5 +119,12 @@ namespace VPR.WebApp
         }
 
         #endregion
+
+        protected void lnkRegistration_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Master/Registration.aspx?name=registration");
+        }
+
+       
     }
 }

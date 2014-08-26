@@ -112,6 +112,24 @@ namespace VPR.WebApp {
         protected global::System.Web.UI.WebControls.Button btnLogin;
         
         /// <summary>
+        /// lblRegistration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRegistration;
+        
+        /// <summary>
+        /// lnkRegistration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkRegistration;
+        
+        /// <summary>
         /// lblMsg control.
         /// </summary>
         /// <remarks>

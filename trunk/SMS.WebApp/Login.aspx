@@ -61,6 +61,10 @@
                                             <p class="submitButton">
                                                 <asp:Button ID="btnLogin" runat="server" CssClass="button" Text="Login" ValidationGroup="Save"
                                                     OnClick="btnLogin_Click" />
+                                                    <br />
+                                                <asp:Label ID="lblRegistration" runat="server" Text="Don't Have Account "></asp:Label>
+                                                 <asp:LinkButton ID="lnkRegistration" runat="server" Text="Click Here"
+                                                        ForeColor="Blue" Enabled="True" OnClick="lnkRegistration_Click"></asp:LinkButton>
                                             </p>
                                             <p style="height:15px;">
                                                 <asp:Label ID="lblMsg" runat="server" CssClass="errormessage" Visible="false"></asp:Label>

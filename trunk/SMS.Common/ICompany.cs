@@ -16,7 +16,10 @@ namespace VPR.Common
         string EmailID { get; set; }
         int fk_CountryID { get; set; }
         int? fk_StateID { get; set; }
+        string StateName { get; set; }
         bool IsActive { get; set; }
+        string Country { get; set; }
         string ProductInterest { get; set; }
+        string CompType { get; set; }
     }
 }

@@ -202,7 +202,7 @@ namespace VPR.WebApp.View
         {
             CommonBLL commonBll = new CommonBLL();
             List<ICompany> lstLoc = commonBll.GetActiveCompany();
-            GeneralFunctions.PopulateDropDownList(ddlLoc, lstLoc, "Id", "Name", true);
+            GeneralFunctions.PopulateDropDownList(ddlLoc, lstLoc, "Id", "CompName", true);
         }
 
         private void LoadData()

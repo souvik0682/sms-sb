@@ -13,40 +13,37 @@ using System.Collections.Specialized;
 
 namespace VPR.WebApp
 {
-    public partial class Site : System.Web.UI.MasterPage
+    public partial class SiteWithoutSesion : System.Web.UI.MasterPage
     {
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            InitialMethod();
-        }
+        //protected void Page_Init(object sender, EventArgs e)
+        //{
+        //    InitialMethod();
+        //}
 
         private void InitialMethod()
         {
             //Clears the application cache.
-            GeneralFunctions.ClearApplicationCache();
+           // GeneralFunctions.ClearApplicationCache();
 
-            SetUserAccess();
-            if (Request.QueryString["name"] == "registration")
+            //SetUserAccess();
+
+            if (!Request.Path.Contains("ChangePassword.aspx"))
             {
                 Response.Redirect("~/Master/Registration.aspx");
-            }
+                ////if (!ReferenceEquals(Session[Constants.SESSION_USER_INFO], null))
+                ////{
+                ////    IUser user = (IUser)Session[Constants.SESSION_USER_INFO];
 
-            else if (!Request.Path.Contains("ChangePassword.aspx"))
-            {
-                if (!ReferenceEquals(Session[Constants.SESSION_USER_INFO], null))
-                {
-                    IUser user = (IUser)Session[Constants.SESSION_USER_INFO];
-
-                    if (ReferenceEquals(user, null) || user.Id == 0)
-                    {
-                        Response.Redirect("~/Login.aspx");
-                    }
-                    SetAttributes(user);
-                }
-                else
-                {
-                    Response.Redirect("~/Login.aspx");
-                }
+                ////    if (ReferenceEquals(user, null) || user.Id == 0)
+                ////    {
+                ////        Response.Redirect("~/Login.aspx");
+                ////    }
+                ////    SetAttributes(user);
+                ////}
+                ////else
+                ////{
+                ////    Response.Redirect("~/Login.aspx");
+                ////}
             }
             else
             {
@@ -64,12 +61,12 @@ namespace VPR.WebApp
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //Response.Redirect("~/Master/Registration.aspx");
             Page.Header.DataBind();
             this.Page.ClientScript.RegisterClientScriptInclude(this.GetType(), "Common", this.ResolveClientUrl("~/Scripts/Common.js"));
             this.Page.ClientScript.RegisterClientScriptInclude(this.GetType(), "CustomTextBox", this.ResolveClientUrl("~/Scripts/CustomTextBox.js"));
 
-            GenerateUserSpecificMenu(UserBLL.GetLoggedInUserId());
+            //GenerateUserSpecificMenu(UserBLL.GetLoggedInUserId());
         }
 
         protected void lnkLogout_Click(object sender, EventArgs e)
@@ -85,37 +82,37 @@ namespace VPR.WebApp
 
         private void SetAttributes(IUser user)
         {
-            lblUserName.Text = "Welcome " + user.UserFullName;
+            //lblUserName.Text = "Welcome " + user.UserFullName;
         }
 
         private void SetUserAccess()
         {
-            if (Request.QueryString["mid"] != null)
-            {
-                int menuId = 0;
-                int userId = 0;
+            //if (Request.QueryString["mid"] != null)
+            //{
+            //    int menuId = 0;
+            //    int userId = 0;
 
-                userId = UserBLL.GetLoggedInUserId();
-                menuId = Convert.ToInt32(VPR.Utilities.GeneralFunctions.DecryptQueryString(Request.QueryString["mid"]));
-                IUserPermission userPermission = UserBLL.GetMenuAccessByUser(userId, menuId);
-                Session[Constants.SESSION_USER_PERMISSION] = userPermission;
-            }           
-            
+            //    userId = UserBLL.GetLoggedInUserId();
+            //    menuId = Convert.ToInt32(VPR.Utilities.GeneralFunctions.DecryptQueryString(Request.QueryString["mid"]));
+            //    IUserPermission userPermission = UserBLL.GetMenuAccessByUser(userId, menuId);
+            //    Session[Constants.SESSION_USER_PERMISSION] = userPermission;
+            //}
+
         }
 
         private void GenerateUserSpecificMenu(int UserId)
         {
-            DataTable MenuTable = UserBLL.GetUserSpecificMenuList(UserId);
+            //DataTable MenuTable = UserBLL.GetUserSpecificMenuList(UserId);
 
-            StringBuilder StringMenu = new StringBuilder();
+            //StringBuilder StringMenu = new StringBuilder();
 
-            //Filter for 1st level menu
-            DataRow[] PRows = MenuTable.Select("PID = 0");
-            StringMenu.Append("<ul>");
-            GenerateList(MenuTable, StringMenu, PRows);
-            StringMenu.Append("</ul>");
+            ////Filter for 1st level menu
+            //DataRow[] PRows = MenuTable.Select("PID = 0");
+            //StringMenu.Append("<ul>");
+            //GenerateList(MenuTable, StringMenu, PRows);
+            //StringMenu.Append("</ul>");
 
-            navbar.InnerHtml = StringMenu.ToString();
+            //navbar.InnerHtml = StringMenu.ToString();
         }
 
         private string GenerateList(DataTable MenuTable, StringBuilder StringMenu, DataRow[] PRows)
@@ -178,6 +175,5 @@ namespace VPR.WebApp
 
             return StringMenu.ToString();
         }
-
     }
 }

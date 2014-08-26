@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddEditUser.aspx.cs" Inherits="VPR.WebApp.View.AddEditUser" MasterPageFile="~/Site.Master" Title=":: Liner :: Add / Edit User" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddEditUser.aspx.cs" Inherits="VPR.WebApp.View.AddEditUser" MasterPageFile="~/Site.Master" Title=":: SMS :: Add / Edit User" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">    
     <script src="../Scripts/Common.js" type="text/javascript"></script>
 </asp:Content>

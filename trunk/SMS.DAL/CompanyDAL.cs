@@ -40,25 +40,28 @@ namespace VPR.DAL
 
         public static int SaveCompany(ICompany Comp, int modifiedBy)
         {
-            string strExecution = "[admin].[uspSaveUser]";
+            string strExecution = "[admin].[prcAddEditCompany]";
             int result = 0;
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
-                oDq.AddIntegerParam("@CompId", Comp.Id);
+                oDq.AddIntegerParam("@pk_CompanyId", Comp.Id);
                 oDq.AddVarcharParam("@CompName", 100, Comp.CompName);
                 oDq.AddVarcharParam("@CompAddress1", 200, Comp.CompAddress.Address);
-                oDq.AddVarcharParam("@CompAddress1", 200, Comp.CompAddress.Address2);
-                oDq.AddVarcharParam("@CompAddress1", 50, Comp.CompAddress.City);
-                oDq.AddVarcharParam("@CompAddress1", 10, Comp.CompAddress.Pin);
-                oDq.AddVarcharParam("@CompName", 200, Comp.CompPhone);
+                oDq.AddVarcharParam("@CompAddress2", 200, Comp.CompAddress.Address2);
+                oDq.AddVarcharParam("@City", 50, Comp.CompAddress.City);
+                oDq.AddVarcharParam("@PIN", 10, Comp.CompAddress.Pin);
+                oDq.AddVarcharParam("@CompPhone", 200, Comp.CompPhone);
                 oDq.AddVarcharParam("@EmailId", 200, Comp.EmailID);
-                oDq.AddBooleanParam("@IsActive", Comp.IsActive);
                 oDq.AddVarcharParam("@RegMobile", 12, Comp.RegMobile);
-                oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
+                oDq.AddIntegerParam("@userID", modifiedBy);
                 oDq.AddVarcharParam("@ProductInterest", 100, Comp.ProductInterest);
                 oDq.AddIntegerParam("@fk_CountryID", Comp.fk_CountryID);
                 oDq.AddIntegerParam("@fk_StateID", Comp.fk_StateID);
+                oDq.AddVarcharParam("@StateName", 50, Comp.StateName);
+                oDq.AddVarcharParam("@CompType", 1, Comp.CompType);
+                oDq.AddVarcharParam("@ContactPerson", 100, Comp.ContactPerson);
+
                 //oDq.AddIntegerParam("@Result", result, QueryParameterDirection.Output);
                 oDq.RunActionQuery();
                 result = 1;
@@ -70,7 +73,7 @@ namespace VPR.DAL
 
         public static List<ICompany> GetCountry()
         {
-            string strExecution = "[dbo].[uspGetCountry]";
+            string strExecution = "[admin].[usp_GetCountry]";
             List<ICompany> lstCountry = new List<ICompany>();
 
             using (DbQuery oDq = new DbQuery(strExecution))
@@ -91,7 +94,7 @@ namespace VPR.DAL
 
         public static List<ICompany> GetState()
         {
-            string strExecution = "[dbo].[uspGetState]";
+            string strExecution = "[admin].[usp_GetState]";
             List<ICompany> lstState = new List<ICompany>();
 
             using (DbQuery oDq = new DbQuery(strExecution))
@@ -130,7 +133,7 @@ namespace VPR.DAL
             return reader;
         }
 
-        public static ICompany GetCompany(int CompId, char isActiveOnly, SearchCriteria searchCriteria)
+        public static ICompany GetCompany(int CompId, bool isActiveOnly, SearchCriteria searchCriteria)
         {
             string strExecution = "[dbo].[uspGetCompany]";
             ICompany loc = null;
@@ -138,7 +141,7 @@ namespace VPR.DAL
             using (DbQuery oDq = new DbQuery(strExecution))
             {
                 oDq.AddIntegerParam("@CompId", CompId);
-                oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
+                oDq.AddBooleanParam("@IsActiveOnly", isActiveOnly);
                 oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
                 oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
                 DataTableReader reader = oDq.GetTableReader();

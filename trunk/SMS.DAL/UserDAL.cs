@@ -125,10 +125,10 @@ namespace VPR.DAL
                 oDq.AddVarcharParam("@FirstName", 30, user.FirstName);
                 oDq.AddVarcharParam("@LastName", 30, user.LastName);
                 oDq.AddIntegerParam("@RoleId", user.UserRole.Id);
-                oDq.AddIntegerParam("@LocId", user.UserCompany.Id);
+                //oDq.AddIntegerParam("@LocId", user.UserCompany.Id);
                 oDq.AddVarcharParam("@EmailId", 50, user.EmailId);
                 oDq.AddBooleanParam("@IsActive", user.IsActive);
-                oDq.AddBooleanParam("@AllowMutipleLocation", user.AllowMutipleLocation);
+                //oDq.AddBooleanParam("@AllowMutipleLocation", user.AllowMutipleLocation);
                 oDq.AddIntegerParam("@CompanyId", companyId);
                 oDq.AddIntegerParam("@ModifiedBy", modifiedBy);
                 oDq.AddIntegerParam("@Result", result, QueryParameterDirection.Output);

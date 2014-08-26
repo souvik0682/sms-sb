@@ -17,7 +17,7 @@ namespace VPR.BLL
     {
         public List<ICompany> GetAllCompanyList(SearchCriteria searchCriteria)
         {
-            return CompanyDAL.GetCompanyList(false, searchCriteria);
+            return CompanyDAL.GetCompanyList(true, searchCriteria);
         }
 
         public string SaveCompany(ICompany Comp, int modifiedBy)
@@ -51,6 +51,14 @@ namespace VPR.BLL
         public static System.Data.DataSet GetCompanyById(int compID)
         {
             return CompanyDAL.GetCompanyById(compID);
+        }
+
+        public ICompany GetCompany(int CompId)
+        {
+            SearchCriteria searchCriteria = new SearchCriteria();
+            searchCriteria.SortExpression = "CompName";
+            searchCriteria.SortDirection = "ASC";
+            return CompanyDAL.GetCompany(CompId, false, searchCriteria);
         }
     }
 

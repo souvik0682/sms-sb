@@ -110,6 +110,7 @@ namespace VPR.BLL
             return UserDAL.GetUserList(false, searchCriteria);
         }
 
+       
         public List<IUser> GetActiveUserList()
         {
             SearchCriteria searchCriteria = new SearchCriteria();

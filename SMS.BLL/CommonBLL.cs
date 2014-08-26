@@ -271,6 +271,17 @@ namespace VPR.BLL
             //return CommonDAL.GetCountry();
         }
 
+        public DataTable GetAllState()
+        {
+            return CommonDAL.GetAllState();
+        }
+
+        public DataTable GetAllProduct()
+        {
+            return CommonDAL.GetAllProduct();
+        }
+
+
         //public void SaveLocation(ILocation loc, int modifiedBy)
         //{
         //    CommonDAL.SaveLocation(loc, modifiedBy);

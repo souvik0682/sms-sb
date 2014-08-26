@@ -219,7 +219,7 @@ namespace VPR.DAL
 
             using (DbQuery oDq = new DbQuery(strExecution))
             {
-                oDq.AddIntegerParam("@LocId", CompId);
+                oDq.AddIntegerParam("@CompId", CompId);
                 oDq.AddCharParam("@IsActiveOnly", 1, isActiveOnly);
                 oDq.AddVarcharParam("@SortExpression", 50, searchCriteria.SortExpression);
                 oDq.AddVarcharParam("@SortDirection", 4, searchCriteria.SortDirection);
@@ -261,7 +261,21 @@ namespace VPR.DAL
 
         #endregion
 
-        
+        public static DataTable GetAllState()
+        {
+            string ProcName = "[dbo].[procGetAllState]";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+            return dquery.GetTable();
+        }
+
+
+        public static DataTable GetAllProduct()
+        {
+            string ProcName = "[admin].[prcGetAllProduct]";
+            DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
+            return dquery.GetTable();
+        }
+
 
         #region Group Company
 
@@ -578,7 +592,7 @@ namespace VPR.DAL
 
         public static DataTable GetAllCountry()
         {
-            string ProcName = "[dbo].[usp_GetAllCountry]";
+            string ProcName = "[admin].[usp_GetAllCountry]";
             DAL.DbManager.DbQuery dquery = new DAL.DbManager.DbQuery(ProcName);
             return dquery.GetTable();
         }

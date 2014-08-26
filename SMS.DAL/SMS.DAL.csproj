@@ -42,10 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonDAL.cs" />
+    <Compile Include="CompanyDAL.cs" />
     <Compile Include="DBManager\DataConnection.cs" />
     <Compile Include="DBManager\DbManagerBase.cs" />
     <Compile Include="DBManager\DbQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrationDAL.cs" />
+    <Compile Include="TransDAL.cs" />
     <Compile Include="UserDAL.cs" />
   </ItemGroup>
   <ItemGroup>
